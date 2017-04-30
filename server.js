@@ -7,6 +7,8 @@ const EXPHBS = require("express-handlebars");
 // Import routes and give the server access to them.
 const ROUTES = require("./controllers/pizzas_controller.js");
 
+const db = require("./models");
+
 const PORT = process.env.PORT || 3000;
 
 const APP = EXPRESS();
@@ -26,4 +28,7 @@ APP.set("view engine", "handlebars");
 
 APP.use("/", ROUTES);
 
-APP.listen(PORT, () => console.log("listening on port:", PORT));
+db.sequelize.sync().then(function() 
+{
+	APP.listen(PORT, () => console.log("listening on port:", PORT));
+});	

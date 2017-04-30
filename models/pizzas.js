@@ -1,23 +1,21 @@
-// Import the ORM to create functions that will interact with the database.
-const ORM = require("../config/orm.js");
-
-const PIZZA = {
-  selectAll: function(cb) {
-    ORM.selectAll("pizzas", function(res) {
-      cb(res);
-    });
-  },
-  insertOne: function(pizza, cb) {
-    ORM.insertOne("pizzas", pizza, function(res) {
-      cb(res);
-    });
-  },
-  updateOne: function(pizzaId, cb) {
-    ORM.updateOne("pizzas", pizzaId , function(res) {
-      cb(res);
-    });
-  }
+module.exports = function(sequelize, DataTypes) {
+  var Pizza = sequelize.define("Pizza", {
+    pizza_name: {
+      type: DataTypes.STRING,
+      // AllowNull is a flag that restricts a todo from being entered if it doesn't
+      // have a text value
+      //allowNull: false,
+      // len is a validation that checks that our todo is between 1 and 140 characters
+      validate: {
+        len: [1, 140]
+      }
+    },
+    devoured: {
+      type: DataTypes.BOOLEAN,
+      // defaultValue is a flag that defaults a new todos complete value to false if
+      // it isn't supplied one
+      defaultValue: false
+    }
+  });
+  return Pizza;
 };
-
-// Export the database functions for the controller (pizzas_controller.js).
-module.exports = PIZZA;
