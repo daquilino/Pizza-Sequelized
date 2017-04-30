@@ -1,0 +1,118 @@
+
+<header class="text-center">
+  <h1 class="text-center" id="main-header">Pizza Logger!</h1>  
+</header>
+
+<div class="container">
+    
+  <div class="row"> 
+    
+    <!-- 'Pizzas To Eat' Panel -->
+    <div class="col-md-4" id="eat">
+      <div class="panel panel-danger"> 
+       
+        <div class="panel-heading">
+           <h3>Pizzas To Eat</h3>
+        </div>
+        
+        <div class="panel-body">                 
+          
+          <table class="table table-striped"> <!-- .table-striped alternates table row colors -->
+            <thead>
+              <tr>
+                  <th>ID</th>
+                  <th>Pizza</th>
+                  <th></th>
+                          
+               </tr>
+            </thead>
+            <tbody >
+              {{#each pizzas}}
+              {{#unless this.devoured}}
+                <tr>
+                  <td><strong>&num;{{this.id}}</strong></td>
+
+                  <td>{{this.pizza_name}}</td>
+                  
+                  <td>  
+                    <form action="/{{this.id}}?_method=PUT" method="POST">
+                      <input type="hidden" name="devoured" value=1>
+                      <button class="btn" type="submit">EAT ME!</button>
+                    </form>
+                  </td>
+                </tr>
+              {{/unless}}
+            {{/each}}
+
+            </tbody>
+          </table>
+        </div><!-- END panel-body -->
+      </div><!-- END panel -->
+    </div><!-- End #eat -->  
+    
+    <!-- 'Add A Pizza' Panel -->
+    <div class="col-md-4" id="add-pizza">
+      <div class="panel panel-danger"> 
+       
+        <div class="panel-heading">
+           <h3>Add A Pizza</h3>
+        </div>
+        
+        <div class="panel-body" id="add-panel">
+ 
+          <form  action="/" method="POST">
+
+            <div class="form-group" id="add-form">
+             {{!--  <label for="addPizza">Pizza Name:</label> --}}
+              <input type="text" id="addPizza" name="newPizza" placeholder="Pizza Name">
+            </div>
+
+            <button class="btn" type="submit">Add Pizza</button>
+          
+          </form>
+        </div><!-- panel-body -->
+      </div><!-- panel-->
+    </div><!-- End col -->
+
+    <!-- 'Devoured' Panel -->
+    <div class="col-md-4">  
+      <div class="panel panel-danger"> 
+       
+        <div class="panel-heading">
+           <h3>Devoured</h3>
+        </div>
+        
+        <div class="panel-body"> 
+
+          <table class="table table-striped"> 
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Pizza</th>             
+              </tr>
+            </thead>
+              
+            <tbody >
+              {{#each pizzas}}
+                {{#if this.devoured}}
+                  <tr>
+                    <td><strong>{{this.id}}.)</strong></td>
+                    <td class="strike-through">{{this.pizza_name}}</td>
+                  </tr>
+                {{/if}}
+              {{/each}}
+
+            </tbody>
+          </table>
+        </div><!-- panel-body -->
+      </div><!-- panel-->
+    </div><!-- End col -->  
+  
+</div><!-- End .container -->
+
+<footer class="footer">
+    <div class="container">
+        <p>&copy;Douglas Aquilino | <a href="https://github.com/daquilino/Pizza">GitHub Repo</a></p>
+    </div>
+</footer>
+

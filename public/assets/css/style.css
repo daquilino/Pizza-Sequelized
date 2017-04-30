@@ -1,0 +1,44 @@
+body
+{
+	background:  linear-gradient(to right, green, white , red);
+}
+
+#add-form
+{
+	margin-top: 97px;
+}
+
+#main-header
+{
+	margin-top: 0vh;
+	margin-bottom: 6vh;
+	font-weight: 900;
+	color: green;
+	font-size: 8vw;
+}
+
+h3
+{
+	color: green;
+	font-weight: 900;
+	margin: 0;
+	text-align: center;
+}
+
+#add-panel
+{
+	text-align: center;
+	background: url(../images/pizza.png) center no-repeat;
+	min-height: 300px;
+}
+
+
+.strike-through
+{
+	text-decoration: line-through;
+}
+
+.btn
+{
+	background-color: lightgreen;
+}
