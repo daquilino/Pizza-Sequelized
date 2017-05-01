@@ -17,8 +17,8 @@ ROUTER.get("/", function(req, res) {
 //INSERT
 ROUTER.post("/", function(req, res) {
 
-  // if newPizza is not ""
-  if(req.body)
+  //checks if pizaa_name is not empty;
+  if(req.body.pizza_name !== "")
   {  
     db.Pizza.create(req.body).then(function() {
       res.redirect("/");
