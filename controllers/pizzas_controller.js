@@ -23,12 +23,14 @@ ROUTER.get("/", function(req, res)
 });
 
 //INSERT new Pizza
-ROUTER.post("/pizza", function(req, res) {
+ROUTER.post("/pizza", function(req, res) 
+{
 
   //checks if pizza_name is not empty;
   if(req.body.pizza_name !== "")
   {  
-    db.Pizza.create(req.body).then(function() {
+    db.Pizza.create(req.body).then(function() 
+    {
       res.redirect("/");
     });
   }
@@ -44,12 +46,18 @@ ROUTER.post("/customer/:id", function(req, res)
   let pizzaID = req.params.id;
   let customer = req.body.customer_name.toUpperCase();
   
-  db.Customer.create({customer_name: customer, PizzaId: pizzaID})
-  .then(function(data) 
-  {
-    updatePizza(req, res, data.id);   
-  });
+  //if customer is not empty
+  if(customer !== "")
+  { 
 
+    db.Customer.create({customer_name: customer, PizzaId: pizzaID})
+    .then(function(data) 
+    {
+      updatePizza(req, res, data.id);   
+    });
+  }
+  else
+    res.redirect("/");  
 });
 
 //Updates pizza, setting devoured to true and adds id of customer who devoured it.

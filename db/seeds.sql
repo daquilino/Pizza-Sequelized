@@ -2,8 +2,8 @@
 -- USE pizzas_db;
 
 -- Heroku JAWSBD .
-USE `lx4054pv8zjti4eb`;
+USE `pdv21sa64vq3r5w4`;
 
-INSERT INTO pizza (pizza_name) VALUES ('Mushroom');
-INSERT INTO pizza (pizza_name) VALUES ('Spinach Feta');
-INSERT INTO pizza (pizza_name) VALUES ('Peppers & Onions');
+INSERT INTO Pizza (pizza_name) VALUES ('Mushroom');
+INSERT INTO Pizza (pizza_name) VALUES ('Spinach Feta');
+INSERT INTO Pizza (pizza_name) VALUES ('Peppers & Onions');
