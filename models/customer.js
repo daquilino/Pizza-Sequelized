@@ -18,21 +18,9 @@ module.exports = function(sequelize, DataTypes)
       }
     },
       
-    {    
-      classMethods: 
-      {
-        associate: function(models) 
-        {
-          // Creates one-to-one association with Pizza table.
-          // Creates foreign key 'PizzaId' in `Customer` table. 
-          Customer.belongsTo(models.Pizza);
-        } 
-      }
-    },
-    
     {
-      freezeTableName: true,
-      timestamps: false
+      freezeTableName: true,  //  prevents sequilize from making table name plural.
+      timestamps: false       //  prevents sequilize from adding `updatedAt` and `createdAt` columnss.
     }
   
   );//END var Customer

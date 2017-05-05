@@ -59,8 +59,6 @@ Whenever a user submits a pizza's name, the app will display the pizza and a cor
 * [body-parser]() - Node.js body parsing middleware.
 * [mysql](https://www.npmjs.com/package/mysql)	- This is a node.js driver for mysql.
 * [express-handlebars](https://www.npmjs.com/package/express-handlebars) - A Handlebars view engine for Express.
-* [method-override](https://www.npmjs.com/package/method-override) - Lets you use HTTP verbs such as PUT or DELETE in places where the client doesn't support it.
-
 
 ## Author
 

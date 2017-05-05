@@ -6,33 +6,27 @@ const db = require("../models");
 
 
 
-
-
-
-// need to do a join here
-// see what res.json.(reutrned object) looks like
-// return proper object.
-
 //Create all our routes and set up logic within those routes where required.
-ROUTER.get("/", function(req, res) {
-  db.Customer.findAll(
+ROUTER.get("/", function(req, res) 
+{
+  
+  db.Pizza.findAll(
   {
-    include: [db.Pizza]
+    //where: query,
+    include: [db.Customer]
   })
-  .then(function(data) 
+  .then(function(dbPost) 
   {
-    let hbsObject = 
-    {
-      pizzas: data
-    };
+    let hbsObject = { pizzas: dbPost}; 
     res.render("index", hbsObject);
-  });
-});
+  }); 
+
+});//END ROUTER.get
 
 //INSERT Pizza
 ROUTER.post("/pizza", function(req, res) {
 
-  //checks if pizaa_name is not empty;
+  //checks if pizza_name is not empty;
   if(req.body.pizza_name !== "")
   {  
     db.Pizza.create(req.body).then(function() {
@@ -44,53 +38,40 @@ ROUTER.post("/pizza", function(req, res) {
 
 });
 
-
-
 //INSERT Customer
 ROUTER.post("/customer/:id", function(req, res) 
 {
  
-  var pizzaID = req.params.id;
-  var customer = req.body.customer_name.toUpperCase();
+  let pizzaID = req.params.id;
+  let customer = req.body.customer_name.toUpperCase();
   
   db.Customer.create({customer_name: customer, PizzaId: pizzaID})
-  .then(function() 
+  .then(function(data) 
   {
-     res.redirect("/");        
+    updatePizza(req, res, data.id);   
   });
 
 });
 
 
-
-
-
-//==============================================
-//==========================================
-//               THis is a test
-//=========================================
-//==========================================
-ROUTER.get("/", function(req, res) 
+//Helper function updates pizza, setting devoured to true and adds id of customer who devoured it.
+function updatePizza(req,res,customerId)
 {
-
+  var updateObj = { 
     
-  db.Customer.findAll(
-  {
-    //where: query,
-    include: [db.Pizza]
-  })
-  .then(function(dbPost) 
-  {
-    res.json(dbPost);
-  }); 
-});
-// //==============================================
-//==========================================
+    "devoured": true,  
+    "CustomerId": customerId
+  }; 
 
-
+   db.Pizza.update(updateObj, {
+      where: {
+        id: req.params.id
+      }
+    }).then(function(dbTodo) {
+      res.redirect("/");
+    }); 
+}
 
 
 // Export routes for server.js to use.
 module.exports = ROUTER;
-
-

@@ -1,6 +1,6 @@
 
 <header class="text-center">
-  <h1 class="text-center" id="main-header">Pizza Logger!</h1>  
+  <h1 class="text-center" id="main-header">Pizza Logger &#8544;&#8544;!</h1>  
 </header>
 
 <div class="container">
@@ -23,15 +23,14 @@
                   <th>Pizza</th>
                   <th>Name</th>
                   <th></th>
-
-                          
+                        
               </tr>
             </thead>
             <tbody >
               {{#each pizzas}}
-              {{#unless this.devoured}}
+                {{#unless this.devoured}}
                 <tr>
-                  <td>{{this.Pizza.pizza_name}}</td>
+                  <td>{{this.pizza_name}}</td>
                   
                   <td>  
                     <form action="/customer/{{this.id}}" method="POST">
@@ -40,8 +39,8 @@
                     </form>
                   </td>
                 </tr>
-              {{/unless}}
-            {{/each}}
+                {{/unless}}
+              {{/each}}
 
             </tbody>
           </table>
@@ -78,28 +77,22 @@
       <div class="panel panel-danger"> 
        
         <div class="panel-heading">
-           <h3>Devoured</h3>
+           <h3>Devoured By</h3>
         </div>
         
         <div class="panel-body"> 
 
           <table class="table table-striped"> 
-            <thead>
-              <tr>
-                <th></th>
-
-              </tr>
-            </thead>
-              
+                       
             <tbody >
-              {{#each pizzas}}
-               
-                  <tr>              
-                    <td>{{this.Pizza.pizza_name}}</td>
-                    <td>Eaten By </td>
-                    <td>{{this.customer_name}}</td> {{!-- <td>{{this.customer_name}}</td> --}}
-                  </tr>
               
+              {{#each pizzas}}
+                {{#if this.devoured}}
+                  <tr>              
+                    <td>{{this.pizza_name}}</td>
+                    <td>{{this.Customer.customer_name}}</td> 
+                  </tr>
+                {{/if}}
               {{/each}}
 
             </tbody>
