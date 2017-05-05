@@ -28,7 +28,7 @@ APP.set("view engine", "handlebars");
 
 APP.use("/", ROUTES);
 
-db.sequelize.sync().then(function() 
+db.sequelize.sync().then(function()  //remove {force:true}
 {
 	APP.listen(PORT, () => console.log("listening on port:", PORT));
 });	
