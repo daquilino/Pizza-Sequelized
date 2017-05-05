@@ -1,4 +1,4 @@
-# Pizza Logger - Sequilized
+# Pizza Logger II - Sequilized
 
 This is a version of the [Pizza Logger](https://github.com/daquilino/Pizza) using Sequelize instead of a custom built ORM. New features added SAY HOW IT DIFFERS FROM ORIGINAL The App that lets users submit the names of differernt types of pizzas to eat, and keep track whether or no they have devoured them. The app utilizes MySQL (JAWSDB on Heroku), Node, Express, Handlebars and a homemade ORM and follows the MVC design pattern.
 
