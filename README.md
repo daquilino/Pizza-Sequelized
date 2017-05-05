@@ -3,7 +3,7 @@
 This is a version of my [Pizza Logger](https://github.com/daquilino/Pizza) app using Sequelize instead of a custom built ORM. Like the original, the app lets users submit the names of different types of pizzas to eat.  A feature of supplying a name when the 'eat me' button is clicked, keeping track of who ate what pizza, was added to the app. The app was build following the MVC design pattern and utilizing MySQL (JAWSDB on Heroku), Node, Express, Handlebars and Sequilize.
 
 
-Whenever a user submits a pizza's name, the app will alphabetically display the pizza and a corresponding `EAT ME!` button in a table on the left side (or top when responsive) of the page waiting to be devoured.  When user clicks the `EAT ME!` button, the pizza will move to a table on the right side (or bottom when responsive) of the page.
+Whenever a user submits a pizza's name, the pizza is inserted into the 'Pizza' table, the app will alphabetically display the pizza, an input box, and a corresponding `EAT ME!` button in a table on the left side (or top when responsive) of the page waiting to be devoured. When the user enters a name and clicks the `EAT ME!` button, the name is inserted into the 'Customer' table, then the pizza is updated by its 'id'. Its 'devoured' value is to true, and its 'CustomerId' value is set to the 'id' value of name. The pizza will move to a table on the right side (or bottom when responsive) of the page showing its corresponding name.
 
 ## Models Overview
 
@@ -22,7 +22,7 @@ Two models are used in the app 'Pizza' and 'Customer' each with the following co
 There is a one-to-one association between the two models , 'Pizza' (source) and 'Customer' (target) , creating the foreign key 'CustomerID' in the 'Pizza' model using: 
 
 ```javascript
-	 Pizza.belongsTo(models.Customer);
+Pizza.belongsTo(models.Customer);
 ```
 
 Using this association we can then query the database with a join statement thereby obtaining a table of pizzas with there associated customer by name.
