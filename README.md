@@ -35,7 +35,7 @@ db.Pizza.findAll(
   }).then ....
 ```
 
-#### Directory structure / MVC design pattern 
+## Directory structure / MVC design pattern 
 
 ```
 .
