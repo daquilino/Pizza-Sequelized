@@ -1,3 +1,5 @@
+//Create all our routes and set up logic within those routes where required.
+
 const EXPRESS = require("express");
 const ROUTER = EXPRESS.Router();
 
@@ -5,25 +7,22 @@ const ROUTER = EXPRESS.Router();
 const db = require("../models");
 
 
-
-//Create all our routes and set up logic within those routes where required.
 ROUTER.get("/", function(req, res) 
-{
-  
+{ 
   db.Pizza.findAll(
   {
-    //where: query,
-    include: [db.Customer]
+    include: [db.Customer],
+    order: 'pizza_name ASC' 
   })
   .then(function(dbPost) 
-  {
+  {    
     let hbsObject = { pizzas: dbPost}; 
     res.render("index", hbsObject);
   }); 
 
-});//END ROUTER.get
+});
 
-//INSERT Pizza
+//INSERT new Pizza
 ROUTER.post("/pizza", function(req, res) {
 
   //checks if pizza_name is not empty;
@@ -38,7 +37,7 @@ ROUTER.post("/pizza", function(req, res) {
 
 });
 
-//INSERT Customer
+//INSERT new Customer
 ROUTER.post("/customer/:id", function(req, res) 
 {
  
@@ -53,8 +52,7 @@ ROUTER.post("/customer/:id", function(req, res)
 
 });
 
-
-//Helper function updates pizza, setting devoured to true and adds id of customer who devoured it.
+//Updates pizza, setting devoured to true and adds id of customer who devoured it.
 function updatePizza(req,res,customerId)
 {
   var updateObj = { 
