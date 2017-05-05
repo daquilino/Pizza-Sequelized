@@ -19,14 +19,21 @@ Two models are used in the app 'Pizza' and 'Customer' each with the following co
    - id (primary key)
    - customer_name - string
 
-There is a one-to-one association setup between the models using: 
+There is a one-to-one association between the two models , 'Pizza' (source) and 'Customer' (target) , creating the foreign key 'CustomerID' in the 'Pizza' model using: 
+
 ```javascript
 	 Pizza.belongsTo(models.Customer);
 ```
 
+Using this association we can then query the database with a join statement thereby obtaining a table of pizzas with there associated customer by name.
 
-
-
+```javascript
+db.Pizza.findAll(
+  {
+    include: [db.Customer],
+    order: 'pizza_name ASC' 
+  }).then ....
+```
 
 #### Directory structure / MVC design pattern 
 
